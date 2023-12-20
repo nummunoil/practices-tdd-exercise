@@ -1,19 +1,27 @@
 export class InsurancePlan {
-  constructor(private insuranceFund: number) {}
+  protected denominator: number;
+
+  constructor(private insuranceFund: number) {
+    this.denominator = 1000;
+  }
 
   calculateMoneyBack(numOfYears: number): number {
     this.validateNumOfYears(numOfYears);
-    const cashSurrenderValue = this.getCashSurrenderValue(numOfYears);
-    return (cashSurrenderValue * this.insuranceFund) / 1000;
+    return (
+      (this.insuranceFund *
+        this.getCashSurrenderValueByNumOfYears(numOfYears)) /
+      this.denominator
+    );
   }
-  validateNumOfYears(numOfYears: number) {
+  private validateNumOfYears(numOfYears: number) {
     if (numOfYears < 0) {
-      throw new RangeError("Num of years should be greater than or equal to 0");
+      throw new RangeError("Num of years must be greater than 0");
     }
   }
 
-  getCashSurrenderValue(numOfYears: number) {
+  protected getCashSurrenderValueByNumOfYears(numOfYears: number): number {
     switch (numOfYears) {
+      case 0:
       case 1:
         return 0;
       case 2:

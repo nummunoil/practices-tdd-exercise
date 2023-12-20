@@ -12,7 +12,10 @@ export class InsurancePlan {
         return 0;
       case 2:
         return 5;
-
+      case 3:
+        return 15;
+      case 4:
+        return 25;
       default:
         return 0;
     }

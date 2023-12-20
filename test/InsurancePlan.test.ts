@@ -16,4 +16,14 @@ describe("calculateMoneyBack", () => {
     const numOfYears = 2;
     expect(insurancePlan.calculateMoneyBack(numOfYears)).toEqual(2500);
   });
+
+  test("Fund 500,000 and year 3 should return 7500", () => {
+    const numOfYears = 3;
+    expect(insurancePlan.calculateMoneyBack(numOfYears)).toEqual(7500);
+  });
+
+  test("Fund 500,000 and year 3 should return 12500", () => {
+    const numOfYears = 4;
+    expect(insurancePlan.calculateMoneyBack(numOfYears)).toEqual(12500);
+  });
 });

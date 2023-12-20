@@ -52,4 +52,16 @@ describe("calculateMoneyBack", () => {
       expect(insurancePlan.calculateMoneyBack(numOfYears)).toEqual(7500);
     });
   });
+
+  test.each([
+    { numOfYears: 1, amount: 0 },
+    { numOfYears: 2, amount: 2500 },
+    { numOfYears: 3, amount: 7500 },
+    { numOfYears: 4, amount: 12500 },
+  ])(
+    "numOfYears is $numOfYears should return $amount",
+    ({ numOfYears, amount }) => {
+      expect(insurancePlan.calculateMoneyBack(numOfYears)).toEqual(amount);
+    }
+  );
 });

@@ -1,18 +1,29 @@
 export class InsurancePlan {
+  protected static PAYBACK_ALL = 9999;
+
   protected denominator: number;
 
   constructor(private insuranceFund: number) {
     this.denominator = 1000;
   }
 
+  getInsuranceFund() {
+    return this.insuranceFund;
+  }
+
   calculateMoneyBack(numOfYears: number): number {
     this.validateNumOfYears(numOfYears);
-    return (
-      (this.insuranceFund *
-        this.getCashSurrenderValueByNumOfYears(numOfYears)) /
-      this.denominator
-    );
+
+    const cashSurrenderValue =
+      this.getCashSurrenderValueByNumOfYears(numOfYears);
+
+    if (cashSurrenderValue === InsurancePlan.PAYBACK_ALL) {
+      return this.insuranceFund;
+    }
+
+    return (this.insuranceFund * cashSurrenderValue) / this.denominator;
   }
+
   private validateNumOfYears(numOfYears: number) {
     if (numOfYears < 0) {
       throw new RangeError("Num of years must be greater than 0");
@@ -31,7 +42,7 @@ export class InsurancePlan {
       case 4:
         return 25;
       default:
-        return 1000;
+        return InsurancePlan.PAYBACK_ALL;
     }
   }
 }

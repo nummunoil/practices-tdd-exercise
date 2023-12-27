@@ -1,6 +1,5 @@
 import { beforeEach, describe, test, expect } from "@jest/globals";
 import { InsurancePlan } from "../src/InsurancePlan";
-import { SilverInsurancePlan } from "../src/SilverInsurancePlan";
 
 //  https://reviewprakan.com/dict-prakan/vocabulary/surrender-value-table
 // CASH SURRENDER VALUE มูลค่าเวนคืนเงินสด หรือ เงินค่าเวนคืนกรมธรรม์ประกันภัย https://dict.longdo.com/search/*cash+surrender+value*
@@ -24,6 +23,12 @@ import { SilverInsurancePlan } from "../src/SilverInsurancePlan";
 // ทุนประกัน (insurance fund) 500,000 บาท
 // จะได้รับเงินคืนเท่ากับ (25 x 500,000)/1,000 = 12,500 บาท
 //
+describe("getInsuranceFund", () => {
+  test("Fund is 333K should return the same amount", () => {
+    expect(new InsurancePlan(333000).getInsuranceFund()).toEqual(333000);
+  });
+});
+
 describe("calculateMoneyBack", () => {
   let insurancePlan: InsurancePlan;
   let numOfYears: number;

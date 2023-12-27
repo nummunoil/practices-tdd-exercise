@@ -18,7 +18,7 @@ export class SilverInsurancePlan extends InsurancePlan {
       case 4:
         return 27;
       default:
-        return this.denominator;
+        return InsurancePlan.PAYBACK_ALL;
     }
   }
 }

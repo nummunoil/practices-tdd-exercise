@@ -12,11 +12,7 @@ export class GoldInsurancePlan extends InsurancePlan {
       case 1:
         return 0;
       case 2:
-        return 7;
-      case 3:
-        return 17;
-      case 4:
-        return 27;
+        return 5.4;
       default:
         return this.denominator;
     }
